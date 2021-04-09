@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Box" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Name..." >
+    <requestFocus />
+
+     </EditText>
+
+     <EditText
+        android:id="@+id/editText5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+           android:inputType="number"
+           android:hint="Type number.."
+           android:ems="10"
+         />
+
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" />
+
+     <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retrieve" />
+
+     <EditText
+         android:id="@+id/editText3"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:ems="10" />
+
+     <TextView
+         android:id="@+id/tvName"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Name Retrieved" />
+
+     <EditText
+         android:id="@+id/editText4"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:ems="10" />
+
+     <TextView
+         android:id="@+id/tvCheckBox"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Checkbox Value" />
+
+    <EditText
+    android:id="@+id/editText6"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10" />
+
+    <TextView
+        android:id="@+id/tvnumValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number retrived" />
+
+</LinearLayout>

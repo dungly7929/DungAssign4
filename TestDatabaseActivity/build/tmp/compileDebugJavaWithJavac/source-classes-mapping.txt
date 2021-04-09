@@ -1,0 +1,10 @@
+de/vogella/android/sqlite/first/MainActivity.java
+ de.vogella.android.sqlite.first.MainActivity
+de/vogella/android/sqlite/first/CommentsDataSource.java
+ de.vogella.android.sqlite.first.CommentsDataSource
+de/vogella/android/sqlite/first/BuildConfig.java
+ de.vogella.android.sqlite.first.BuildConfig
+de/vogella/android/sqlite/first/MySQLiteHelper.java
+ de.vogella.android.sqlite.first.MySQLiteHelper
+de/vogella/android/sqlite/first/Comment.java
+ de.vogella.android.sqlite.first.Comment

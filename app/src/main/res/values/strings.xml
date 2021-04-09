@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ViewModelLiveDataJSonTest</string>
+    <string name="title">Image Downloading</string>
+    <string name="image_link">
+        http://content.sportslogos.net/logos/6/227/full/4578_toronto_raptors-primary-2016.png
+    </string>
+</resources>
