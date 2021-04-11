@@ -2,7 +2,9 @@ package dung.ly.n01327929;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,11 +50,13 @@ public class DownloadFrag extends Fragment
     Spinner ImgSpinner;
     private static final int WRITE_EXTERNAL_STORAGE_CODE = 1;
     ArrayList<Bitmap> Lightmap = new ArrayList<Bitmap>();
+    SharedPreferences sharedPreferences;
     int pos;
     ImageView imgshow = null;
     Button btndownload;
     String[] pic = {"Pic1", "Pic2", "Pic3"};
-    String[] url = {"https://www.gardendesign.com/pictures/images/675x529Max/site_3/helianthus-yellow-flower-pixabay_11863.jpg", "https://cdn.britannica.com/s:400x225,c:crop/97/158797-050-ABECB32F/North-Cascades-National-Park-Lake-Ann-park.jpg"};
+    int trigg = 0;
+    String[] url = {"https://www.gardendesign.com/pictures/images/675x529Max/site_3/helianthus-yellow-flower-pixabay_11863.jpg", "https://cdn.britannica.com/s:400x225,c:crop/97/158797-050-ABECB32F/North-Cascades-National-Park-Lake-Ann-park.jpg","https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg"};
     View view;
 
 
@@ -67,8 +71,15 @@ public class DownloadFrag extends Fragment
         createSpinner.execute(url);
         btndownload.setOnClickListener(v ->
         {
-            SaveLoadImage save = new SaveLoadImage();
-            save.execute(Lightmap);
+            if (trigg != 4)
+            {
+                Toast.makeText(getActivity(), "This picture already download !", Toast.LENGTH_SHORT).show();
+            } else
+            {
+                SaveLoadImage save = new SaveLoadImage();
+                save.execute(Lightmap);
+            }
+
         });
         return view;
     }
@@ -107,6 +118,7 @@ public class DownloadFrag extends Fragment
                 e.printStackTrace();
             }
 
+
             return Lightmap;
         }
 
@@ -128,7 +140,8 @@ public class DownloadFrag extends Fragment
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                 {
-                        pos = position;
+                    pos = position;
+                    trigg = 4;
                 }
 
                 @Override
@@ -166,7 +179,7 @@ public class DownloadFrag extends Fragment
         protected void onPostExecute(ArrayList<Bitmap> bitmap)
         {
             super.onPostExecute(bitmap);
-            if(imgshow != null)
+            if (imgshow != null)
             {
                 progressDialog.hide();
                 imgshow.setImageBitmap(bitmap.get(pos));
@@ -178,50 +191,31 @@ public class DownloadFrag extends Fragment
                 File sdCard = Environment.getExternalStorageDirectory();
                 File directory = new File(sdCard.getAbsolutePath() + "/Download");
                 directory.mkdir();
-                String filename = "";
-                if(pos == 0)
+                String filename = String.format("picture.jpg");
+                trigg = pos;
+                File outFile = new File(directory, filename);
+                try
                 {
-                    filename = String.format("Flower.jpg");
-                }
-                else if (pos == 1)
-                {
-                    filename = String.format("lake.jpg");
-                }
-                else
-                {
-                    filename = String.format("Moutain.jpg");
-                }
-                File file = new File(filename);
-                if(file.exists())
-                {
+                    outputStream = new FileOutputStream(outFile);
+                    bm.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                    outputStream.flush();
+                    outputStream.close();
 
-                }
-                else
+                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    intent.setData(Uri.fromFile(outFile));
+                    getActivity().sendBroadcast(intent);
+                    progressDialog.hide();
+                } catch (FileNotFoundException e)
                 {
-                    File outFile = new File(directory, filename);
-                    try
-                    {
-                        outputStream = new FileOutputStream(outFile);
-                        bm.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                        outputStream.flush();
-                        outputStream.close();
-
-                        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                        intent.setData(Uri.fromFile(outFile));
-                        getActivity().sendBroadcast(intent);
-                        progressDialog.hide();
-                    } catch (FileNotFoundException e)
-                    {
-                        e.printStackTrace();
-                    } catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    e.printStackTrace();
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
                 }
 
-            }
-            else
-                {
+
+            } else
+            {
                 progressDialog.show();
             }
 
