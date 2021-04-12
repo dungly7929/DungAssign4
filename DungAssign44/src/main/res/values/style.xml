@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <style name="text_edit">
+            <item name="android:textStyle">bold</item>
+            <item name="android:textColor">@color/red</item>
+        </style>
+
+        <style name="clock">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        </style>
+</resources>
