@@ -8,7 +8,7 @@
     tools:context=".HomeFragment">
 
     <TextView
-        android:id="@+id/text_date"
+        android:id="@+id/dungtext_date"
         android:layout_width="163dp"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.231" />
 
     <TextView
-        android:id="@+id/text_time"
+        android:id="@+id/dungtext_time"
         android:layout_width="163dp"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
@@ -38,13 +38,13 @@
         app:layout_constraintVertical_bias="0.312" />
 
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/dungtext_home"
         android:layout_width="163dp"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="DUNG LY"
+        android:text="@string/dung_ly"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,13 +54,13 @@
         app:layout_constraintVertical_bias="0.075" />
 
     <TextView
-        android:id="@+id/text_home2"
+        android:id="@+id/dungtext_home2"
         android:layout_width="163dp"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="N01327929"
+        android:text="@string/n01327929"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

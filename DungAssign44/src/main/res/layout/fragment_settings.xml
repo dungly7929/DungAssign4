@@ -9,10 +9,10 @@
 
 
     <TextView
-        android:id="@+id/textview_time_setting"
+        android:id="@+id/dungtextview_time_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time Setting:"
+        android:text="@string/time_setting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/dunglinearLayout"
         android:layout_width="369dp"
         android:layout_height="154dp"
         android:orientation="horizontal"
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.119">
 
         <RadioGroup
-            android:id="@+id/timebtngroup"
+            android:id="@+id/dungtimebtngroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -41,39 +41,39 @@
 
 
             <RadioButton
-                android:id="@+id/radiobtn12h"
+                android:id="@+id/dungradiobtn12h"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="12h" />
+                android:text="@string/_12h" />
 
             <RadioButton
-                android:id="@+id/radiobtn24h"
+                android:id="@+id/dungradiobtn24h"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="24h" />
+                android:text="@string/_24h" />
 
         </RadioGroup>
 
         <RadioGroup
-            android:id="@+id/bgbtngroup"
+            android:id="@+id/dungbgbtngroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
             <RadioButton
-                android:id="@+id/radiobtnpurple"
+                android:id="@+id/dungradiobtnpurple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/purple" />
 
             <RadioButton
-                android:id="@+id/radiobtnwhite"
+                android:id="@+id/dungradiobtnwhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white" />
 
             <RadioButton
-                android:id="@+id/radiobtnpink"
+                android:id="@+id/dungradiobtnpink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/pink" />
@@ -83,10 +83,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnsettingapply"
+        android:id="@+id/dungbtnsettingapply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Apply"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,10 +94,10 @@
         app:layout_constraintVertical_bias="0.871" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/dungtextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Background:"
+        android:text="@string/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.654"
@@ -106,7 +106,7 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <Switch
-        android:id="@+id/orientationsw"
+        android:id="@+id/dungorientationsw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Orientation"

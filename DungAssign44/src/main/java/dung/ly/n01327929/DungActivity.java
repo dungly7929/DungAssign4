@@ -1,38 +1,29 @@
+//Name: DUNG LY         ID: N01327929
 package dung.ly.n01327929;
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.telephony.SmsManager;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
-import android.widget.AdapterView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -53,18 +44,18 @@ public class DungActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.dungtoolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        DrawerLayout drawer = findViewById(R.id.dungdrawer_layout);
+        NavigationView navigationView = findViewById(R.id.dungnav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_dowload, R.id.nav_service,R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.dungnav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
@@ -85,7 +76,7 @@ public class DungActivity extends AppCompatActivity
         switch (item.getItemId())
         {
             case R.id.dungaction_help:
-                Intent itent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dota2.com/home"));
+                Intent itent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.dota_url)));
                 startActivity(itent);
                 break;
             case R.id.action_location:
@@ -109,7 +100,7 @@ public class DungActivity extends AppCompatActivity
                 getCurrentLocation();
             } else
             {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Permission_denied, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -117,7 +108,7 @@ public class DungActivity extends AppCompatActivity
     @Override
     public boolean onSupportNavigateUp()
     {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.dungnav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
@@ -129,8 +120,8 @@ public class DungActivity extends AppCompatActivity
             if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED)
             {
                 SmsManager sms = SmsManager.getDefault();
-                sms.sendTextMessage("4377708477", null, "This is a test sms !", null, null);
-                Snackbar.make((DrawerLayout) findViewById(R.id.drawer_layout), "SMS has sent !", Snackbar.LENGTH_SHORT).show();
+                sms.sendTextMessage(getString(R.string.phone_num), null, getString(R.string.sms_test), null, null);
+                Snackbar.make((DrawerLayout) findViewById(R.id.dungdrawer_layout), R.string.sms_sent, Snackbar.LENGTH_SHORT).show();
             } else
             {
                 requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
@@ -166,9 +157,9 @@ public class DungActivity extends AppCompatActivity
                         int lastlocationint = locationResult.getLocations().size() - 1;
                         double latitude = locationResult.getLocations().get(lastlocationint).getLatitude();
                         double longitude = locationResult.getLocations().get(lastlocationint).getLongitude();
-                        String resut = "Latitude: " + latitude +
-                                "\nLongitude: " + longitude;
-                        Snackbar.make((DrawerLayout) findViewById(R.id.drawer_layout), resut, Snackbar.LENGTH_SHORT).show();
+                        String resut = getString(R.string.Latitude) + latitude +
+                                getString(R.string.Longitude) + longitude;
+                        Snackbar.make((DrawerLayout) findViewById(R.id.dungdrawer_layout), resut, Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }, Looper.getMainLooper());
@@ -179,11 +170,11 @@ public class DungActivity extends AppCompatActivity
     public void onBackPressed()
     {
         new AlertDialog.Builder(this)
-                .setTitle("Dung LY N01327929")
+                .setTitle(R.string.dung_ly_n01327929)
                 .setCancelable(false)
-                .setMessage("Are you sure to quit ?")
-                .setPositiveButton("Yes", (dialog, which) -> finish())
-                .setNegativeButton("No", (dialog, which) -> dialog.cancel())
+                .setMessage(R.string.are_you_quit)
+                .setPositiveButton(R.string.yes, (dialog, which) -> finish())
+                .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel())
                 .create()
                 .show();
     }

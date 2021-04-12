@@ -1,3 +1,4 @@
+//Name: DUNG LY         ID: N01327929
 package dung.ly.n01327929;
 
 import android.content.Context;
@@ -13,9 +14,6 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
-import android.widget.Toast;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class SettingsFrag extends Fragment
 {
@@ -29,15 +27,15 @@ public class SettingsFrag extends Fragment
 
     private void setupid()
     {
-        format12 = (RadioButton) view.findViewById(R.id.radiobtn12h);
-        format24 = (RadioButton) view.findViewById(R.id.radiobtn24h);
-        btnapply = (Button) view.findViewById(R.id.btnsettingapply);
-        pink = (RadioButton) view.findViewById(R.id.radiobtnpink);
-        white = (RadioButton) view.findViewById(R.id.radiobtnwhite);
-        purple = (RadioButton) view.findViewById(R.id.radiobtnpurple);
-        btngroup = (RadioGroup) view.findViewById(R.id.timebtngroup);
-        btngroup1 = (RadioGroup) view.findViewById(R.id.bgbtngroup);
-        swtori = (Switch) view.findViewById(R.id.orientationsw);
+        format12 = (RadioButton) view.findViewById(R.id.dungradiobtn12h);
+        format24 = (RadioButton) view.findViewById(R.id.dungradiobtn24h);
+        btnapply = (Button) view.findViewById(R.id.dungbtnsettingapply);
+        pink = (RadioButton) view.findViewById(R.id.dungradiobtnpink);
+        white = (RadioButton) view.findViewById(R.id.dungradiobtnwhite);
+        purple = (RadioButton) view.findViewById(R.id.dungradiobtnpurple);
+        btngroup = (RadioGroup) view.findViewById(R.id.dungtimebtngroup);
+        btngroup1 = (RadioGroup) view.findViewById(R.id.dungbgbtngroup);
+        swtori = (Switch) view.findViewById(R.id.dungorientationsw);
     }
 
     @Override
@@ -46,10 +44,10 @@ public class SettingsFrag extends Fragment
 
         view = inflater.inflate(R.layout.fragment_settings, container, false);
         setupid();
-        sharedPreferences = this.getActivity().getSharedPreferences("Data", Context.MODE_PRIVATE);
-        String timeformat = sharedPreferences.getString("time", "24h");
-        int bgcolor = sharedPreferences.getInt("bgcolor", 0);
-        boolean orisw1 = sharedPreferences.getBoolean("orisw", false);
+        sharedPreferences = this.getActivity().getSharedPreferences(getString(R.string.data), Context.MODE_PRIVATE);
+        String timeformat = sharedPreferences.getString(getString(R.string.time), getString(R.string._24h));
+        int bgcolor = sharedPreferences.getInt(getString(R.string.bgcolor), 0);
+        boolean orisw1 = sharedPreferences.getBoolean(getString(R.string.orisw), false);
         if (!orisw1)
         {
             swtori.setChecked(false);
@@ -59,10 +57,10 @@ public class SettingsFrag extends Fragment
         }
         if (btngroup.getCheckedRadioButtonId() == -1)
         {
-            if (timeformat.equals("12h"))
+            if (timeformat.equals(getString(R.string._12h)))
             {
                 format12.setChecked(true);
-            } else if (timeformat.equals("24h"))
+            } else if (timeformat.equals(getString(R.string._24h)))
             {
                 format24.setChecked(true);
             }
@@ -107,7 +105,7 @@ public class SettingsFrag extends Fragment
             timeformat = format24.getText().toString();
         }
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("time", timeformat);
+        editor.putString(getString(R.string.time), timeformat);
 
         //Change background color
         int bgcolor = 0;
@@ -121,8 +119,8 @@ public class SettingsFrag extends Fragment
         {
             bgcolor = 1;
         }
-        editor.putInt("bgcolor", bgcolor);
-        editor.putBoolean("orisw",orisw);
+        editor.putInt(getString(R.string.bgcolor), bgcolor);
+        editor.putBoolean(getString(R.string.orisw),orisw);
         editor.apply();
     }
 }

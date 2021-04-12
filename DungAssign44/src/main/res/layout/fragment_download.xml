@@ -9,7 +9,7 @@
     tools:context=".DownloadFrag">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/dungspinner"
         android:layout_width="183dp"
         android:layout_height="49dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.117" />
 
     <ImageView
-        android:id="@+id/imgshow"
+        android:id="@+id/dungimgshow"
         android:layout_width="215dp"
         android:layout_height="269dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,10 +32,10 @@
         tools:src="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/btndownload"
+        android:id="@+id/dungbtndownload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/download"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.459"

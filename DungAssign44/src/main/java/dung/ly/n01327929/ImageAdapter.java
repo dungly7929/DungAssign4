@@ -1,19 +1,14 @@
+//Name: DUNG LY         ID: N01327929
 package dung.ly.n01327929;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ImageAdapter extends BaseAdapter
@@ -55,8 +50,8 @@ public class ImageAdapter extends BaseAdapter
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(myLayout,null);
 
-        TextView txtview = (TextView) convertView.findViewById(R.id.text_view_name);
-        ImageView imgview = (ImageView) convertView.findViewById(R.id.img_spinner);
+        TextView txtview = (TextView) convertView.findViewById(R.id.dungtext_view_name);
+        ImageView imgview = (ImageView) convertView.findViewById(R.id.dungimg_spinner);
 
         txtview.setText(arrayList.get(position) .ImageName);
         imgview.setImageBitmap(arrayList.get(position) .Image);

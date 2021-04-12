@@ -8,7 +8,7 @@
     tools:context=".WebServiceFrag" >
 
     <TextView
-        android:id="@+id/jsontvlonlat"
+        android:id="@+id/dungjsontvlonlat"
         android:layout_width="215dp"
         android:layout_height="202dp"
         android:text=""
@@ -19,11 +19,11 @@
         app:layout_constraintVertical_bias="0.517" />
 
     <EditText
-        android:id="@+id/editextzipcode"
+        android:id="@+id/dungeditextzipcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="     Zipcode"
+        android:hint="@string/zipcode"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,10 +33,10 @@
         app:layout_constraintVertical_bias="0.104" />
 
     <Button
-        android:id="@+id/btnzip"
+        android:id="@+id/dungbtnzip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.462"

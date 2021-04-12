@@ -1,7 +1,7 @@
+//Name: DUNG LY         ID: N01327929
 package dung.ly.n01327929;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,34 +33,34 @@ public class WebServiceFrag extends Fragment
     {
 
         View root = inflater.inflate(R.layout.fragment_webserver, container, false);
-        jsontv = root.findViewById(R.id.jsontvlonlat);
-        btnzip = root.findViewById(R.id.btnzip);
-        editText = root.findViewById(R.id.editextzipcode);
+        jsontv = root.findViewById(R.id.dungjsontvlonlat);
+        btnzip = root.findViewById(R.id.dungbtnzip);
+        editText = root.findViewById(R.id.dungeditextzipcode);
         btnzip.setOnClickListener(v ->
         {
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
             String text = editText.getText().toString();
             if (text.equals(""))
             {
-                dialog.setTitle("Assignment 4:");
-                dialog.setMessage("Zipcode can not empty");
+                dialog.setTitle(R.string.assignmet4);
+                dialog.setMessage(R.string.zipcant);
                 dialog.setIcon(R.drawable.ic_warning);
                 dialog.show();
-                editText.setError("This can not empty");
+                editText.setError(getString(R.string.noempty));
                 jsontv.setText("");
             }
             else if (text.length() <=4)
             {
-                dialog.setTitle("Assignment 4:");
-                dialog.setMessage("Zipcode can not less than 5");
+                dialog.setTitle(R.string.assignmet4);
+                dialog.setMessage(R.string.zipcantless5);
                 dialog.setIcon(R.drawable.ic_warning);
                 dialog.show();
-                editText.setError("Zipcode can not less than 5");
-                jsontv.setText("");
+                editText.setError(getString(R.string.zipcantless5));
+                jsontv.setText(R.string.blank);
             }
             else
             {
-                new ReadJSON().execute("https://samples.openweathermap.org/data/2.5/weather?zip=["+text+"],us&appid=b6907d289e10d714a6e88b30761fae22");
+                new ReadJSON().execute(getString(R.string.jsonurl1)+text+getString(R.string.jsonurl2));
             }
 
         });
@@ -106,14 +106,14 @@ public class WebServiceFrag extends Fragment
             try
             {
                 JSONObject object = new JSONObject(s);
-                JSONObject longlat = object.getJSONObject("coord");
-                double lon = longlat.getDouble("lon");
-                double lat = longlat.getDouble("lat");
-                JSONObject main = object.getJSONObject("main");
-                double temp = main.getDouble("temp") - 273.15;
-                int humi = main.getInt("humidity");
-                String name = object.getString("name");
-                jsontv.setText(String.format("Name: %s \nLon: %.2f \tLat: %.2f \nHumidity: %d \nTemperature: %.2fC \nZipcode: %s", name, lon, lat, humi, temp,editText.getText().toString()));
+                JSONObject longlat = object.getJSONObject(getString(R.string.coord));
+                double lon = longlat.getDouble(getString(R.string.lon));
+                double lat = longlat.getDouble(getString(R.string.lat));
+                JSONObject main = object.getJSONObject(getString(R.string.main));
+                double temp = main.getDouble(getString(R.string.temp)) - 273.15;
+                int humi = main.getInt(getString(R.string.humidity));
+                String name = object.getString(getString(R.string.name));
+                jsontv.setText(String.format(getString(R.string.result), name, lon, lat, humi, temp,editText.getText().toString()));
 
 
             } catch (JSONException e)

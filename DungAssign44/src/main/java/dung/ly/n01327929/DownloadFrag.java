@@ -1,30 +1,23 @@
+//Name: DUNG LY         ID: N01327929
 package dung.ly.n01327929;
 
-import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,13 +29,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 
 public class DownloadFrag extends Fragment
@@ -54,9 +43,8 @@ public class DownloadFrag extends Fragment
     int pos;
     ImageView imgshow = null;
     Button btndownload;
-    String[] pic = {"Pic1", "Pic2", "Pic3"};
+    String[] pic,url;
     int trigg = 0;
-    String[] url = {"https://www.gardendesign.com/pictures/images/675x529Max/site_3/helianthus-yellow-flower-pixabay_11863.jpg", "https://cdn.britannica.com/s:400x225,c:crop/97/158797-050-ABECB32F/North-Cascades-National-Park-Lake-Ann-park.jpg","https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg"};
     View view;
 
 
@@ -64,16 +52,18 @@ public class DownloadFrag extends Fragment
     {
 
         view = inflater.inflate(R.layout.fragment_download, container, false);
-        ImgSpinner = (Spinner) view.findViewById(R.id.spinner);
-        imgshow = (ImageView) view.findViewById(R.id.imgshow);
-        btndownload = (Button) view.findViewById(R.id.btndownload);
+        url = new String[]{getString(R.string.pic1url), getString(R.string.pic2url),getString(R.string.pic3url)};
+        pic = new String[]{getString(R.string.pic1),getString(R.string.pic2),getString(R.string.pic3)};
+        ImgSpinner = (Spinner) view.findViewById(R.id.dungspinner);
+        imgshow = (ImageView) view.findViewById(R.id.dungimgshow);
+        btndownload = (Button) view.findViewById(R.id.dungbtndownload);
         CreateSpinner createSpinner = new CreateSpinner();
         createSpinner.execute(url);
         btndownload.setOnClickListener(v ->
         {
             if (trigg != 4)
             {
-                Toast.makeText(getActivity(), "This picture already download !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), view.getResources().getString(R.string.pic_download_success), Toast.LENGTH_SHORT).show();
             } else
             {
                 SaveLoadImage save = new SaveLoadImage();
@@ -169,7 +159,7 @@ public class DownloadFrag extends Fragment
         protected void onPreExecute()
         {
             super.onPreExecute();
-            progressDialog.setMessage("Please wait...It is downloading");
+            progressDialog.setMessage(getString(R.string.Please_wait));
             progressDialog.setIndeterminate(false);
             progressDialog.setCancelable(false);
             progressDialog.show();
@@ -189,9 +179,9 @@ public class DownloadFrag extends Fragment
                 FileOutputStream outputStream = null;
 
                 File sdCard = Environment.getExternalStorageDirectory();
-                File directory = new File(sdCard.getAbsolutePath() + "/Download");
+                File directory = new File(sdCard.getAbsolutePath() + getString(R.string.download_path));
                 directory.mkdir();
-                String filename = String.format("picture.jpg");
+                String filename = String.format(getString(R.string.pic_type));
                 trigg = pos;
                 File outFile = new File(directory, filename);
                 try
