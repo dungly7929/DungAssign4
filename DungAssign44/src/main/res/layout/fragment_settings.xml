@@ -18,7 +18,9 @@
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.053"
+        style="@style/clock"
+        />
 
     <LinearLayout
         android:id="@+id/dunglinearLayout"
@@ -91,7 +93,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.871" />
+        app:layout_constraintVertical_bias="0.871"
+        style="@style/Widget.AppCompat.Button"
+        />
 
     <TextView
         android:id="@+id/dungtextView2"
@@ -103,13 +107,16 @@
         app:layout_constraintHorizontal_bias="0.654"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.053"
+        style="@style/clock"
+        />
 
     <Switch
         android:id="@+id/dungorientationsw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Orientation"
+        style="@style/clock"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
