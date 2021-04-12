@@ -1,4 +1,5 @@
 <resources>
+    <!--Name: DUNG LY           ID: N01327929 -->
     <string name="app_name">DungAssign4</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -48,7 +49,6 @@
     <string name="time">time</string>
     <string name="bgcolor">bgcolor</string>
     <string name="orisw">orisw</string>
-    <string name="an_pm">hh:mm:ss a</string>
     <string name="data">Data</string>
     <string name="assignmet4">Assignment 4:</string>
     <string name="zipcant">Zipcode can not empty</string>
@@ -65,5 +65,5 @@
     <string name="humidity">humidity</string>
     <string name="name">name</string>
     <string name="result">Name: %s \nLon: %.2f \tLat: %.2f \nHumidity: %d \nTemperature: %.2fC \nZipcode: %s</string>
-    <string name="not_an_pm">HH:mm:ss</string>
+    <string name="submit">Submit</string>
 </resources>
