@@ -1,6 +1,7 @@
 package dung.ly.n01327929;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -177,7 +178,15 @@ public class DungActivity extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
-        super.onBackPressed();
+        new AlertDialog.Builder(this)
+                .setTitle("Dung LY N01327929")
+                .setCancelable(false)
+                .setMessage("Are you sure to quit ?")
+                .setPositiveButton("Yes", (dialog, which) -> finish())
+                .setNegativeButton("No", (dialog, which) -> dialog.cancel())
+                .create()
+                .show();
     }
+
 
 }
