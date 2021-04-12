@@ -21,15 +21,16 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <LinearLayout
-        android:layout_width="80dp"
-        android:layout_height="86dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="369dp"
+        android:layout_height="154dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintHorizontal_bias="0.809"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088">
+        app:layout_constraintVertical_bias="0.119">
 
         <RadioGroup
             android:id="@+id/timebtngroup"
@@ -50,6 +51,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="24h" />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/bgbtngroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/radiobtnpurple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple" />
+
+            <RadioButton
+                android:id="@+id/radiobtnwhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
+            <RadioButton
+                android:id="@+id/radiobtnpink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/pink" />
+
         </RadioGroup>
 
     </LinearLayout>
@@ -64,4 +92,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.871" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Background:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.654"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <Switch
+        android:id="@+id/orientationsw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Orientation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.338" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
