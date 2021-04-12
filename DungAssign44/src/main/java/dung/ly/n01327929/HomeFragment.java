@@ -2,6 +2,8 @@ package dung.ly.n01327929;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.Time;
@@ -30,20 +32,46 @@ public class HomeFragment extends Fragment
     TextView textvdate, textvtime;
     SharedPreferences sharedPreferences;
     String timeformat = "";
-
+    View view;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        View view = root;
+        view = root;
         sharedPreferences = this.getActivity().getApplication().getSharedPreferences("Data", Context.MODE_PRIVATE);
-        timeformat = sharedPreferences.getString("time","24h");
+        timeformat = sharedPreferences.getString("time", "24h");
+        int bgcolor = sharedPreferences.getInt("bgcolor", 0);
+        boolean sw = sharedPreferences.getBoolean("orisw", false);
         Date currentDate = Calendar.getInstance().getTime();
         textvdate = (TextView) view.findViewById(R.id.text_date);
         textvtime = (TextView) view.findViewById(R.id.text_time);
         showtime(timeformat);
+        changebg(bgcolor);
         textvdate.setText(currentDate.toString());
+        if (sw == false)
+        {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        } else
+        {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
         return root;
+    }
+
+    private void changebg(int number)
+    {
+
+        if (number == 1)
+        {
+            view.setBackgroundColor(getResources().getColor(R.color.purple));
+        } else if (number == 2)
+        {
+            view.setBackgroundColor(getResources().getColor(R.color.white));
+        } else if (number == 3)
+        {
+            view.setBackgroundColor(getResources().getColor(R.color.pink));
+        }
+
     }
 
     public void showtime(String time)
@@ -60,8 +88,7 @@ public class HomeFragment extends Fragment
                     timeupdate.postDelayed(this, 1000);
                 }
             }, 10);
-        }
-        else
+        } else
         {
             final Handler timeupdate = new Handler(getMainLooper());
             timeupdate.postDelayed(new Runnable()
