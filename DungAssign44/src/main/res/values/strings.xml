@@ -39,8 +39,8 @@
     <string name="sms_test">This is a test sms !</string>
     <string name="sms_sent">SMS has sent !</string>
     <string name="phone_num">4377708477</string>
-    <string name="Latitude">\"Latitude: \"</string>
-    <string name="Longitude">\"\nLongitude: \"</string>
+    <string name="Latitude">Latitude: </string>
+    <string name="Longitude">\nLongitude: </string>
     <string name="dung_ly_n01327929">Dung LY N01327929</string>
     <string name="are_you_quit">Are you sure to quit ?</string>
     <string name="yes">Yes</string>
