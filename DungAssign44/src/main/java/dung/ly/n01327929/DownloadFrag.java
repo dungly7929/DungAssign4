@@ -43,8 +43,7 @@ public class DownloadFrag extends Fragment
     int pos;
     ImageView imgshow = null;
     Button btndownload;
-    String[] pic,url;
-    int trigg = 0;
+    String[] pic, url;
     View view;
 
 
@@ -52,8 +51,8 @@ public class DownloadFrag extends Fragment
     {
 
         view = inflater.inflate(R.layout.fragment_download, container, false);
-        url = new String[]{getString(R.string.pic1url), getString(R.string.pic2url),getString(R.string.pic3url)};
-        pic = new String[]{getString(R.string.pic1),getString(R.string.pic2),getString(R.string.pic3)};
+        url = new String[]{getString(R.string.pic1url), getString(R.string.pic2url), getString(R.string.pic3url)};
+        pic = new String[]{getString(R.string.pic1), getString(R.string.pic2), getString(R.string.pic3)};
         ImgSpinner = (Spinner) view.findViewById(R.id.dungspinner);
         imgshow = (ImageView) view.findViewById(R.id.dungimgshow);
         btndownload = (Button) view.findViewById(R.id.dungbtndownload);
@@ -61,15 +60,9 @@ public class DownloadFrag extends Fragment
         createSpinner.execute(url);
         btndownload.setOnClickListener(v ->
         {
-            if (trigg != 4)
-            {
-                Toast.makeText(getActivity(), view.getResources().getString(R.string.pic_download_success), Toast.LENGTH_SHORT).show();
-            } else
-            {
-                SaveLoadImage save = new SaveLoadImage();
-                save.execute(Lightmap);
-            }
 
+            SaveLoadImage save = new SaveLoadImage();
+            save.execute(Lightmap);
         });
         return view;
     }
@@ -131,7 +124,6 @@ public class DownloadFrag extends Fragment
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                 {
                     pos = position;
-                    trigg = 4;
                 }
 
                 @Override
@@ -165,6 +157,7 @@ public class DownloadFrag extends Fragment
             progressDialog.show();
         }
 
+
         @Override
         protected void onPostExecute(ArrayList<Bitmap> bitmap)
         {
@@ -181,26 +174,31 @@ public class DownloadFrag extends Fragment
                 File sdCard = Environment.getExternalStorageDirectory();
                 File directory = new File(sdCard.getAbsolutePath() + getString(R.string.download_path));
                 directory.mkdir();
-                String filename = String.format(getString(R.string.pic_type));
-                trigg = pos;
+                String filename = String.format("%d.jpg", pos);
                 File outFile = new File(directory, filename);
-                try
+                if (outFile.exists())
                 {
-                    outputStream = new FileOutputStream(outFile);
-                    bm.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                    outputStream.flush();
-                    outputStream.close();
+                    Toast.makeText(getActivity(),getString(R.string.Downloaded), Toast.LENGTH_SHORT).show();
+                } else
+                {
+                    try
+                    {
+                        outputStream = new FileOutputStream(outFile);
+                        bm.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                        outputStream.flush();
+                        outputStream.close();
 
-                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                    intent.setData(Uri.fromFile(outFile));
-                    getActivity().sendBroadcast(intent);
-                    progressDialog.hide();
-                } catch (FileNotFoundException e)
-                {
-                    e.printStackTrace();
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
+                        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                        intent.setData(Uri.fromFile(outFile));
+                        getActivity().sendBroadcast(intent);
+                    } catch (FileNotFoundException e)
+                    {
+                        e.printStackTrace();
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+
                 }
 
 
