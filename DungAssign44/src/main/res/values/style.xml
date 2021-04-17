@@ -9,4 +9,9 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
         </style>
+
+        <style name="Font">
+            <item name="android:textStyle"> italic</item>
+            <item name="background">@color/font</item>
+        </style>
 </resources>
