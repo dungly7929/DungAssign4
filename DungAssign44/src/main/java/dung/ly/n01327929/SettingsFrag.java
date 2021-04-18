@@ -3,6 +3,7 @@ package dung.ly.n01327929;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -51,9 +52,11 @@ public class SettingsFrag extends Fragment
         if (!orisw1)
         {
             swtori.setChecked(false);
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         } else
         {
             swtori.setChecked(true);
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         if (btngroup.getCheckedRadioButtonId() == -1)
         {

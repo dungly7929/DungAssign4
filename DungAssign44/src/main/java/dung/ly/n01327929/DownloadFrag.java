@@ -2,8 +2,10 @@
 package dung.ly.n01327929;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -51,6 +53,7 @@ public class DownloadFrag extends Fragment
     {
 
         view = inflater.inflate(R.layout.fragment_download, container, false);
+        sharedPreferences = this.getActivity().getApplication().getSharedPreferences(getString(R.string.Data), Context.MODE_PRIVATE);
         url = new String[]{getString(R.string.pic1url), getString(R.string.pic2url), getString(R.string.pic3url)};
         pic = new String[]{getString(R.string.pic1), getString(R.string.pic2), getString(R.string.pic3)};
         ImgSpinner = (Spinner) view.findViewById(R.id.dungspinner);
@@ -64,6 +67,14 @@ public class DownloadFrag extends Fragment
             SaveLoadImage save = new SaveLoadImage();
             save.execute(Lightmap);
         });
+        boolean sw = sharedPreferences.getBoolean(getString(R.string.orisw), false);
+        if (sw == false)
+        {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        } else
+        {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
         return view;
     }
 

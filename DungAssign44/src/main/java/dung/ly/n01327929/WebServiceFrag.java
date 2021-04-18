@@ -2,6 +2,9 @@
 package dung.ly.n01327929;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,6 +28,7 @@ import java.net.URL;
 
 public class WebServiceFrag extends Fragment
 {
+    SharedPreferences sharedPreferences;
     TextView jsontv;
     Button btnzip;
     EditText editText;
@@ -36,6 +40,7 @@ public class WebServiceFrag extends Fragment
         jsontv = root.findViewById(R.id.dungjsontvlonlat);
         btnzip = root.findViewById(R.id.dungbtnzip);
         editText = root.findViewById(R.id.dungeditextzipcode);
+        sharedPreferences = this.getActivity().getSharedPreferences(getString(R.string.data), Context.MODE_PRIVATE);
         btnzip.setOnClickListener(v ->
         {
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
@@ -64,7 +69,14 @@ public class WebServiceFrag extends Fragment
             }
 
         });
-
+        boolean sw = sharedPreferences.getBoolean(getString(R.string.orisw), false);
+        if (sw == false)
+        {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        } else
+        {
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
         return root;
     }
 
